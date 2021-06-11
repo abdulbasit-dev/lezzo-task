@@ -1,0 +1,2 @@
+the backend run on http://localhost:8000
+and this a live demo video link https://drive.google.com/file/d/1U_tRy5Y2J9o2U_nx0BTvav65bq6D_T5a/view?usp=sharing
