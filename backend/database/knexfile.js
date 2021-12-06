@@ -4,10 +4,10 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: process.env.DB_HOST,
+      host: "localhost",
       database: 'node_lezzo-store',
       user: 'root',
-      password: process.env.DB_PASSWORD,
+      password: '',
     },
     pool: {
       min: 2,
