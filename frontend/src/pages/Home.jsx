@@ -35,9 +35,7 @@ function Home() {
     try {
       const res = await axios.post('http://localhost:8000/api/stores', data);
       getData();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

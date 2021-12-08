@@ -4,12 +4,6 @@ import {HomeOutlined, ShopOutlined} from '@ant-design/icons';
 import {Menu} from 'antd';
 
 function Header() {
-  // const [current, setCurrent] = useState('home');
-
-  // const handleClick = e => {
-  //   console.log(e.key);
-  //   setCurrent(e.key);
-  // };
 
   return (
     <Menu

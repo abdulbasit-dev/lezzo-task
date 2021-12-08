@@ -59,7 +59,6 @@ function Categoires() {
         <Row gutter={16}>
           {categories.categories?.data?.map(category => {
             const data = new Buffer.from(category.image.data).toString('ascii');
-            console.log(category);
             return (
               <Col span={6} key={category.c_id}>
                 <Link to={`/store/${sid}/categories/${category.c_id}/products`}>

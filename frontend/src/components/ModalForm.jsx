@@ -55,9 +55,7 @@ function ModalForm({onSubmit, name, type, price}) {
                 onSubmit(values);
                 setIsModalVisible(false);
               })
-              .catch(info => {
-                console.log('Validate Failed:', info);
-              });
+              .catch(info => {});
           }}
         >
           <Form
