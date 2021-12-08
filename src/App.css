@@ -1,0 +1,21 @@
+.app {
+  padding: 0 8rem;
+}
+
+.header {
+  padding: 0 7rem;
+  margin-bottom: 2rem;
+}
+
+.table th tr {
+  border: 1px solid red;
+}
+
+.virtual-grid div {
+  border: 1px solid #eee;
+  padding: 20px 0 10px 20px;
+}
+
+.table_text {
+  color: #333;
+}
