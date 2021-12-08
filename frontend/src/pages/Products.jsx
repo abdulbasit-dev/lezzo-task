@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Divider, Card, Col, Row, Switch, Skeleton, Avatar} from 'antd';
+import {Divider, Card, Col, Row,Skeleton} from 'antd';
 
 import {getProducts} from '../redux/actions/actions';
 
@@ -41,7 +41,7 @@ function Products() {
 
   const addProduct = async data => {
     try {
-      const res = await axios.post(
+        await axios.post(
         `http://localhost:8000/api/stores/${sid}/categories/${cid}/products`,
         data
       );

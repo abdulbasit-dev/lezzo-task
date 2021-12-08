@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Divider, Card, Col, Row, Switch, Skeleton, Avatar} from 'antd';
+import {Divider, Card, Col, Row, Skeleton, Avatar} from 'antd';
 import {Link} from 'react-router-dom';
 
 import {getStores} from '../redux/actions/actions';
@@ -17,6 +17,7 @@ function Home() {
 
   //get all stores
   const getData = async () => {
+      console.log("here")
     const res = await axios.get('http://localhost:8000/api/stores');
     dispatch(getStores(res.data));
   };
@@ -33,7 +34,7 @@ function Home() {
 
   const addStore = async data => {
     try {
-      const res = await axios.post('http://localhost:8000/api/stores', data);
+     await axios.post('http://localhost:8000/api/stores', data);
       getData();
     } catch (err) {}
   };

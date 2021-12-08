@@ -124,7 +124,7 @@ function ModalForm({onSubmit, name, type, price}) {
               <Form.Item
                 name='image'
                 label={`Choose a ${
-                  type != 'Store' ? 'Image' : 'Logo'
+                  type !== 'Store' ? 'Image' : 'Logo'
                 } for the ${type}`}
                 valuePropName='fileList'
                 getValueFromEvent={normFile}

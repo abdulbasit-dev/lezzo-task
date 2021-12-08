@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Divider, Card, Col, Row, Switch, Skeleton, Avatar} from 'antd';
+import {Divider, Card, Col, Row, Skeleton} from 'antd';
 import {Link, useParams} from 'react-router-dom';
 
 import {getCategories} from '../redux/actions/actions';
@@ -38,7 +38,7 @@ function Categoires() {
 
   const addCategory = async data => {
     try {
-      const res = await axios.post(
+        await axios.post(
         `http://localhost:8000/api/stores/${sid}/categories`,
         data
       );
