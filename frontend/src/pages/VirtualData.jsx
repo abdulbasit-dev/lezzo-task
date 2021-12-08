@@ -96,18 +96,19 @@ const VirtualData = () => {
   const columns = [
     {
       title: 'Store Id',
-      dataIndex: 's_id',
+      dataIndex: 'id',
       width: 150,
     },
     {
       title: 'Store Name',
       dataIndex: 'name',
+      width:300
     },
   ];
 
   //get all stores
   const getData = async () => {
-    const res = await axios.get('http://localhost:8000/api/stores');
+    const res = await axios.get('http://localhost:8000/stores');
     dispatch(getStores(res.data));
   };
 
@@ -118,14 +119,17 @@ const VirtualData = () => {
   return (
     <>
       <h2 className='table_text'>List of The available Stores</h2>
-      <VirtualTable
+        {Object.keys(stores.stores).length !== 0 && (
+
+       <VirtualTable
         columns={columns}
-        dataSource={stores.stores.data}
+        dataSource={stores.stores}
         scroll={{
           y: 1000,
           x: '800vw',
         }}
-      />
+      /> 
+        )}
     </>
   );
 };

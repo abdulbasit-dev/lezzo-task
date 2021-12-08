@@ -17,8 +17,7 @@ function Home() {
 
   //get all stores
   const getData = async () => {
-      console.log("here")
-    const res = await axios.get('http://localhost:8000/api/stores');
+    const res = await axios.get('http://localhost:8000/stores');
     dispatch(getStores(res.data));
   };
 
@@ -34,7 +33,7 @@ function Home() {
 
   const addStore = async data => {
     try {
-     await axios.post('http://localhost:8000/api/stores', data);
+     await axios.post('http://localhost:8000/stores', data);
       getData();
     } catch (err) {}
   };
@@ -45,30 +44,29 @@ function Home() {
       <Divider />
       <div className='site-card-wrapper'>
         {Object.keys(stores.stores).length !== 0 && (
-          <h2>Total Number of Store {stores.stores.total}</h2>
+          <h2>Total Number of Store {stores.stores.length}</h2>
+        )}{Object.keys(stores.stores).length !== 0 && (
+             <Row gutter={16}>
+             {stores.stores?.map(store => {
+               return (
+                 <Col span={6} key={store.id}>
+                   <Link to={`/store/${store.id}/categories`}>
+                     <Card style={{width: 300, marginTop: 30}} hovarable='true'>
+                       <Skeleton loading={loading} avatar active>
+                         <Meta
+                           avatar={<Avatar src={store.image_url} size={50} />}
+                           title={`${store.name}`}
+                           description={`Location : ${store.location}`}
+                         />
+                       </Skeleton>
+                     </Card>
+                   </Link>
+                 </Col>
+               );
+             })}
+           </Row>
         )}
-
-        <Row gutter={16}>
-          {stores.stores?.data?.map(store => {
-            const data = new Buffer.from(store.logo.data).toString('ascii');
-
-            return (
-              <Col span={6} key={store.s_id}>
-                <Link to={`/store/${store.s_id}/categories`}>
-                  <Card style={{width: 300, marginTop: 30}} hovarable='true'>
-                    <Skeleton loading={loading} avatar active>
-                      <Meta
-                        avatar={<Avatar src={data} size={50} />}
-                        title={`${store.name}`}
-                        description='This is the description'
-                      />
-                    </Skeleton>
-                  </Card>
-                </Link>
-              </Col>
-            );
-          })}
-        </Row>
+   
       </div>
     </div>
   );

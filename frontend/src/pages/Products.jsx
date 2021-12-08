@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Divider, Card, Col, Row,Skeleton} from 'antd';
+import {Divider, Card, Col, Row, Skeleton} from 'antd';
 
 import {getProducts} from '../redux/actions/actions';
 
@@ -22,9 +22,8 @@ function Products() {
     dispatch(getProducts({}));
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/stores/${sid}/categories/${cid}/products`
+        `http://localhost:8000/products?storeId=${sid}&categoryId=${cid}`
       );
-
       dispatch(getProducts(res.data));
     } catch (err) {}
   };
@@ -40,9 +39,11 @@ function Products() {
   }, []);
 
   const addProduct = async data => {
+    data.storeId = parseInt(sid);
+    data.categoryId = parseInt(cid);
     try {
-        await axios.post(
-        `http://localhost:8000/api/stores/${sid}/categories/${cid}/products`,
+      await axios.post(
+        `http://localhost:8000/products`,
         data
       );
 
@@ -56,39 +57,37 @@ function Products() {
       <Divider />
       <div className='site-card-wrapper'>
         {Object.keys(products.products).length !== 0 && (
-          <h2>Total Number of Product {products.products.total}</h2>
+          <>
+            <h2>Total Number of Product {products.products.length}</h2>
+            <Row gutter={16}>
+              {products.products.map(product => {
+                return (
+                  <Col span={6} key={product.id}>
+                    <Card
+                      style={{width: 200, marginTop: 30}}
+                      cover={<img alt='example' src={product.image_url} />}
+                      hovarable='true'
+                    >
+                      <Skeleton loading={loading} avatar active>
+                        <Meta
+                          title={product.name}
+                          description={
+                            <div>
+                              <p>
+                                Price: {product.price_type + ' '}
+                                {product.price}{' '}
+                              </p>
+                            </div>
+                          }
+                        />
+                      </Skeleton>
+                    </Card>
+                  </Col>
+                );
+              })}
+            </Row>
+          </>
         )}
-
-        <Row gutter={16}>
-          {products.products?.data?.map(product => {
-            const data = new Buffer.from(product.image.data).toString('ascii');
-            return (
-              <Col span={6} key={product.p_id}>
-                <Link to={`/store/${sid}/categories/${cid}/products`}>
-                  <Card
-                    style={{width: 200, marginTop: 30}}
-                    cover={<img alt='example' src={data} />}
-                    hovarable='true'
-                  >
-                    <Skeleton loading={loading} avatar active>
-                      <Meta
-                        title={product.name}
-                        description={
-                          <div>
-                            <p>
-                              Price: {product.price_type + ' '}
-                              {product.price}{' '}
-                            </p>
-                          </div>
-                        }
-                      />
-                    </Skeleton>
-                  </Card>
-                </Link>
-              </Col>
-            );
-          })}
-        </Row>
       </div>
     </div>
   );

@@ -20,8 +20,9 @@ function Categoires() {
     dispatch(getCategories({}));
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/stores/${sid}/categories`
+        `http://localhost:8000/stores/${sid}/categories`
       );
+
       dispatch(getCategories(res.data));
     } catch (err) {}
   };
@@ -37,9 +38,10 @@ function Categoires() {
   }, []);
 
   const addCategory = async data => {
+      data.storeId = parseInt(sid);
     try {
         await axios.post(
-        `http://localhost:8000/api/stores/${sid}/categories`,
+        `http://localhost:8000/categories`,
         data
       );
       getData();
@@ -48,29 +50,29 @@ function Categoires() {
     }
   };
 
+
   return (
     <div>
       <ModalForm type='Category' onSubmit={addCategory} />
       <Divider />
       <div className='site-card-wrapper'>
-        {Object.keys(categories.categories).length !== 0 && (
-          <h2>Total Number of Category {categories.categories.total}</h2>
-        )}
-        <Row gutter={16}>
-          {categories.categories?.data?.map(category => {
-            const data = new Buffer.from(category.image.data).toString('ascii');
+        {Object.keys(categories?.categories).length !== 0 && (
+            <>
+            <h2>Total Number of Category {categories.categories.length}</h2>
+            <Row gutter={16}>
+          {categories.categories.map(category => {
             return (
-              <Col span={6} key={category.c_id}>
-                <Link to={`/store/${sid}/categories/${category.c_id}/products`}>
+              <Col span={6} key={category.id}>
+                <Link to={`/store/${sid}/categories/${category.id}/products`}>
                   <Card
                     style={{width: 200, marginTop: 30}}
-                    cover={<img alt='example' src={data} />}
+                    cover={<img alt='example' src={category.image_url} />}
                     hovarable
                   >
                     <Skeleton loading={loading} avatar active>
                       <Meta
                         title={category.name}
-                        description='Amount Of The category in the store'
+                        description='Description'
                       />
                     </Skeleton>
                   </Card>
@@ -79,6 +81,8 @@ function Categoires() {
             );
           })}
         </Row>
+            </>
+        )}
       </div>
     </div>
   );

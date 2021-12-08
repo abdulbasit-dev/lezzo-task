@@ -115,35 +115,36 @@ function ModalForm({onSubmit, name, type, price}) {
                 </Form.Item>
               </>
             ) : (
-              ''
+                <Form.Item
+                name='location'
+                label="location"
+                rules={[
+                  {
+                    required: true,
+                    message: "location can' be empty",
+                  },
+                ]}
+              >
+                 <Input />
+              </Form.Item>
             )}
 
             {name ? (
               <></>
             ) : (
               <Form.Item
-                name='image'
-                label={`Choose a ${
+                name='image_url'
+                label={`Enter Url ${
                   type !== 'Store' ? 'Image' : 'Logo'
                 } for the ${type}`}
-                valuePropName='fileList'
-                getValueFromEvent={normFile}
                 rules={[
                   {
                     required: true,
-                    message: "image can' be empty",
+                    message: "image url can' be empty",
                   },
                 ]}
               >
-                <Upload
-                  name='image'
-                  listType='picture'
-                  beforeUpload={() => false}
-                >
-                  <Button icon={<CloudUploadOutlined />} block>
-                    Click to upload
-                  </Button>
-                </Upload>
+                 <Input />
               </Form.Item>
             )}
           </Form>
