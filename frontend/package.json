@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "db":"npx json-server db.json --routes routes.json -p 8000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
