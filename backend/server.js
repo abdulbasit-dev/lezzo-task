@@ -32,6 +32,12 @@ app.use('/api/stores', storeRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 
+
+// If no route found
+app.use(function (req, res) {
+  return response(res, 404, false, `Invalid endpoint : ${req.originalUrl}`);
+});
+
 //ERROR HANDLING MIDLLEWARE FUNCTION (HttpError class)
 app.use((error, req, res, next) => {
   //we check if a response has aleardy sent or not
