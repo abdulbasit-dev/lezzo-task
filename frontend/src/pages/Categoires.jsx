@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Divider, Card, Col, Row, Switch, Skeleton, Avatar} from 'antd';
+import {Divider, Card, Col, Row, Skeleton} from 'antd';
 import {Link, useParams} from 'react-router-dom';
 
 import {getCategories} from '../redux/actions/actions';
@@ -38,7 +38,7 @@ function Categoires() {
 
   const addCategory = async data => {
     try {
-      const res = await axios.post(
+        await axios.post(
         `http://localhost:8000/api/stores/${sid}/categories`,
         data
       );
@@ -59,7 +59,6 @@ function Categoires() {
         <Row gutter={16}>
           {categories.categories?.data?.map(category => {
             const data = new Buffer.from(category.image.data).toString('ascii');
-            console.log(category);
             return (
               <Col span={6} key={category.c_id}>
                 <Link to={`/store/${sid}/categories/${category.c_id}/products`}>

@@ -1,15 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {HomeOutlined, ShopOutlined} from '@ant-design/icons';
 import {Menu} from 'antd';
 
 function Header() {
-  // const [current, setCurrent] = useState('home');
-
-  // const handleClick = e => {
-  //   console.log(e.key);
-  //   setCurrent(e.key);
-  // };
 
   return (
     <Menu

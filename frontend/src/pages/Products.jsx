@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Divider, Card, Col, Row, Switch, Skeleton, Avatar} from 'antd';
+import {Divider, Card, Col, Row,Skeleton} from 'antd';
 
 import {getProducts} from '../redux/actions/actions';
 
@@ -17,8 +17,6 @@ function Products() {
   const products = useSelector(state => state.products);
   const {sid, cid} = useParams();
 
-  console.log(products);
-
   //get all catagories
   const getData = async () => {
     dispatch(getProducts({}));
@@ -26,11 +24,9 @@ function Products() {
       const res = await axios.get(
         `http://localhost:8000/api/stores/${sid}/categories/${cid}/products`
       );
-      console.log(res.data);
+
       dispatch(getProducts(res.data));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -44,22 +40,15 @@ function Products() {
   }, []);
 
   const addProduct = async data => {
-    console.log('form data', data);
-
     try {
-      const res = await axios.post(
+        await axios.post(
         `http://localhost:8000/api/stores/${sid}/categories/${cid}/products`,
         data
       );
 
-      console.log(res.data);
       getData();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
-
-  console.log(products);
 
   return (
     <div>
@@ -73,7 +62,6 @@ function Products() {
         <Row gutter={16}>
           {products.products?.data?.map(product => {
             const data = new Buffer.from(product.image.data).toString('ascii');
-            console.log(products);
             return (
               <Col span={6} key={product.p_id}>
                 <Link to={`/store/${sid}/categories/${cid}/products`}>

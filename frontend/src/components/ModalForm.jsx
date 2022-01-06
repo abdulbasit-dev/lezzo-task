@@ -55,9 +55,7 @@ function ModalForm({onSubmit, name, type, price}) {
                 onSubmit(values);
                 setIsModalVisible(false);
               })
-              .catch(info => {
-                console.log('Validate Failed:', info);
-              });
+              .catch(info => {});
           }}
         >
           <Form
@@ -126,7 +124,7 @@ function ModalForm({onSubmit, name, type, price}) {
               <Form.Item
                 name='image'
                 label={`Choose a ${
-                  type != 'Store' ? 'Image' : 'Logo'
+                  type !== 'Store' ? 'Image' : 'Logo'
                 } for the ${type}`}
                 valuePropName='fileList'
                 getValueFromEvent={normFile}

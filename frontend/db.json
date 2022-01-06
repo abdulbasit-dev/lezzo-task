@@ -1,0 +1,56 @@
+{
+    "stores": [
+        {
+            "id": 1,
+            "name": "Defacto",
+            "location": "erbil",
+            "logo": "https://dfcdn.defacto.com.tr/Assets/dist/images/logo.png"
+          },
+          {
+            "id": 2,
+            "name": "Nike",
+            "location": "erbil",
+            "logo": "https://logo.clearbit.com/nike.com?size=200&format=png"
+          },
+          {
+            "id": 3,
+            "name": "Lacoste ",
+            "location": "suli",
+            "logo": "https://brandslogos.com/wp-content/uploads/images/large/lacoste-logo-1.png"
+          },
+          {
+            "id": 4,
+            "name": "Puma",
+            "location": "duhok",
+            "logo": "https://logo.clearbit.com/puma.com?size=200&format=png"
+          },
+          {
+            "id": 5,
+            "name": "Adidas",
+            "location": "suli",
+            "logo": "https://logo.clearbit.com/adidas-group.com?size=200&format=png"
+          },
+          {
+            "id": 6,
+            "name": "Fila",
+            "location": "suli",
+            "logo": "https://logo.clearbit.com/fila.com?size=200&format=png"
+          },
+          {
+            "id": 7,
+            "name": "Levi's",
+            "location": "erbil",
+            "logo": "https://logo.clearbit.com/levi.com?size=200&format=png"
+          },
+          {
+            "id": 8,
+            "name": "Zara",
+            "location": "duhok",
+            "logo": "https://logo.clearbit.com/zara.com?size=200&format=png"
+          }
+    ],
+    "categories": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "products": { "name": "typicode" }
+  }
